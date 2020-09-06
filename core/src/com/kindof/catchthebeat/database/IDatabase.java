@@ -1,9 +1,9 @@
 package com.kindof.catchthebeat.database;
 
-import com.kindof.catchthebeat.Chat;
-import com.kindof.catchthebeat.screens.beatmapeditor.BeatmapEntity;
-import com.kindof.catchthebeat.users.Message;
-import com.kindof.catchthebeat.users.User;
+import com.kindof.catchthebeat.user.chat.Chat;
+import com.kindof.catchthebeat.beatmaps.BeatmapEntity;
+import com.kindof.catchthebeat.user.chat.Message;
+import com.kindof.catchthebeat.user.User;
 
 import java.util.HashMap;
 
@@ -29,15 +29,15 @@ public interface IDatabase {
 
     Long getMessageCount();
 
-    void setChatCount(Integer chatCount);
+    void setChatCount(Long chatCount);
 
-    Integer getChatCount();
+    Long getChatCount();
 
-    void addMessage(Integer chatId, Message message);
+    void addMessage(Long chatId, Message message);
 
     void addChat(Chat chat);
 
-    Chat getChat(Integer chatId);
+    Chat getChat(Long chatId);
 
     HashMap<String, Chat> getChats();
 

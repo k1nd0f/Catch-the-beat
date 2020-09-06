@@ -39,8 +39,9 @@ public class FruitList extends LinkedList<FruitEntity> {
             // ax = actor-x | ay = actor-y | aw = actor-width | ah = actor-height
             Actor actor = fruitEntity.getActor();
             float ax = actor.getX(), ay = actor.getY(), aw = actor.getWidth(), ah = actor.getHeight();
-            if (x > ax && x < ax + aw && y > ay && y < ay + ah)
+            if (x > ax && x < ax + aw && y > ay && y < ay + ah) {
                 return true;
+            }
         }
 
         return false;

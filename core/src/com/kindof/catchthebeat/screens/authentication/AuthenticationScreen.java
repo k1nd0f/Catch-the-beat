@@ -2,26 +2,27 @@ package com.kindof.catchthebeat.screens.authentication;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.kindof.catchthebeat.resources.Res;
-import com.kindof.catchthebeat.ui.actors.buttons.Button;
-import com.kindof.catchthebeat.ui.actors.buttons.TouchUpEventListener;
+import com.kindof.catchthebeat.resources.Globals;
+import com.kindof.catchthebeat.screens.BaseScreen;
+import com.kindof.catchthebeat.ui.Alignment;
+import com.kindof.catchthebeat.ui.UI;
+import com.kindof.catchthebeat.ui.actors.button.Button;
 
-public class AuthenticationScreen implements Screen {
-    private Stage stage;
-    private Table rootTable;
-    private Button goToSignIn, goToSignUp;
+public class AuthenticationScreen extends BaseScreen {
     private SignUpScreen signUpScreen;
     private SignInScreen signInScreen;
 
     public AuthenticationScreen() {
-        signUpScreen = new SignUpScreen();
+        super();
+    }
+
+    @Override
+    public void initialize() {
         signInScreen = new SignInScreen();
+        signUpScreen = new SignUpScreen();
 
         stage = new Stage() {
             @Override
@@ -38,22 +39,30 @@ public class AuthenticationScreen implements Screen {
         rootTable.setFillParent(true);
         rootTable.setTouchable(Touchable.childrenOnly);
 
-        float height = Res.HEIGHT / 5.0f, width = height * 6, x = (Res.WIDTH - width) / 2.0f, pad = 10 * Res.RESOLUTION_HEIGHT_SCALE, y = (Res.HEIGHT - height * 2 + pad) / 2.0f;
-        goToSignIn = new Button(new TouchUpEventListener() {
-            @Override
-            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                Res.GAME.setScreen(signInScreen);
-            }
-        }, x, y + pad + height, width, height, Res.SIGN_IN_BUTTON_UP, Res.SIGN_IN_BUTTON_PRESS);
-        goToSignUp = new Button(new TouchUpEventListener() {
-            @Override
-            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                Res.GAME.setScreen(signUpScreen);
-            }
-        }, x, y, width, height, Res.SIGN_UP_BUTTON_UP, Res.SIGN_UP_BUTTON_PRESS);
+        float
+                buttonH = Globals.HEIGHT / 5.0f,
+                buttonW = Globals.WIDTH / (2.0f / 3.0f),
+                buttonPad = 15 * Globals.RESOLUTION_HEIGHT_SCALE,
+                iButtonW = Globals.WIDTH,
+                iButtonH = Globals.HEIGHT / 2.0f;
 
-        rootTable.addActor(goToSignIn);
-        rootTable.addActor(goToSignUp);
+        Button goToSignInButton = new Button((event, x, y, pointer, button) -> Globals.GAME.setScreenWithTransition(signInScreen), UI.SIGN_IN_BUTTON, UI.SIGN_IN_BUTTON);
+        goToSignInButton.setSize(buttonW, buttonH);
+        UI.calculateAndSetViewElementBounds(
+                goToSignInButton,
+                Alignment.bottom, buttonPad,
+                0, iButtonH, iButtonW, iButtonH
+        );
+
+        Button goToSignUpButton = new Button((event, x, y, pointer, button) -> Globals.GAME.setScreenWithTransition(signUpScreen), UI.SIGN_UP_BUTTON, UI.SIGN_UP_BUTTON);
+        goToSignUpButton.setSize(buttonW, buttonH);
+        UI.calculateAndSetViewElementBounds(
+                goToSignUpButton,
+                Alignment.top, buttonPad,
+                0, 0, iButtonW, iButtonH
+        );
+
+        addActors(goToSignInButton, goToSignUpButton);
         stage.addActor(rootTable);
     }
 
@@ -66,44 +75,9 @@ public class AuthenticationScreen implements Screen {
     }
 
     @Override
-    public void show() {
-        Gdx.input.setInputProcessor(stage);
-        rootTable.setVisible(true);
-    }
-
-    @Override
-    public void render(float delta) {
-        Gdx.gl.glClearColor(0f, 0f, 0f, 1f);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-        stage.act(delta);
-        stage.draw();
-    }
-
-    @Override
-    public void resize(int width, int height) {
-
-    }
-
-    @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public void resume() {
-
-    }
-
-    @Override
-    public void hide() {
-        rootTable.setVisible(false);
-    }
-
-    @Override
     public void dispose() {
         signUpScreen.dispose();
         signInScreen.dispose();
-        stage.dispose();
+        super.dispose();
     }
 }

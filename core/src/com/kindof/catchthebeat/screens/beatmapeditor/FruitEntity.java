@@ -3,10 +3,11 @@ package com.kindof.catchthebeat.screens.beatmapeditor;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.kindof.catchthebeat.gameobjects.fruits.Overlap;
-import com.kindof.catchthebeat.gameobjects.fruits.Overlaps;
-import com.kindof.catchthebeat.resources.Res;
+import com.kindof.catchthebeat.gameobjects.fruit.Overlap;
+import com.kindof.catchthebeat.resources.Globals;
+import com.kindof.catchthebeat.resources.Settings;
 import com.kindof.catchthebeat.screens.beatmapeditor.actors.HitLine;
+import com.kindof.catchthebeat.ui.UI;
 
 public class FruitEntity implements Comparable<FruitEntity> {
     private Image actor;
@@ -24,9 +25,9 @@ public class FruitEntity implements Comparable<FruitEntity> {
         this.spawnTime = spawnTime;
         this.tableWidth = tableWidth;
         this.type = type;
-        actor = new Image(Res.SKIN_ATLAS.findRegion("fruit-" + type));
+        actor = new Image(UI.SKIN_ATLAS.findRegion("fruit-" + type));
         actor.setBounds(x, y, size, size);
-        hitSound = Res.ASSET_MANAGER.get(Res.INTERNAL_PATH_TO_SKINS_DIRECTORY + Res.SKIN_NAME + "/hit-sound.wav", Sound.class);
+        hitSound = UI.ASSET_MANAGER.get(Globals.INTERNAL_PATH_TO_SKINS_DIRECTORY + UI.SKIN_NAME + "/hit-sound.wav", Sound.class);
         hitSoundWasPlayed = true;
         overlap = new Overlap();
         count = -1;
@@ -48,15 +49,15 @@ public class FruitEntity implements Comparable<FruitEntity> {
     }
 
     public void onPositionChanged(float deltaY) {
-        setSpawnTime(getSpawnTime() - deltaY / (Res.BEATMAP_EDITOR_SCREEN.getSettings().getScrollSpeed() * Res.RESOLUTION_HEIGHT_SCALE));
+        setSpawnTime(getSpawnTime() - deltaY / (Globals.BEATMAP_EDITOR_SCREEN.getSettings().getScrollSpeed() * Globals.RESOLUTION_HEIGHT_SCALE));
     }
 
     public void soundCheck() {
-        HitLine hitLine = Res.BEATMAP_EDITOR_SCREEN.getHitLine();
+        HitLine hitLine = Globals.BEATMAP_EDITOR_SCREEN.getHitLine();
         overlap = boundsOverlap(hitLine.getBounds());
-        if (overlap.getType() == Overlaps.hit) {
+        if (overlap.getType() == Overlap.Type.hit) {
             if (!hitSoundWasPlayed) {
-                hitSound.play(Res.SOUND_VOLUME);
+                hitSound.play(Settings.SOUND_VOLUME);
                 hitSoundWasPlayed = true;
             }
             resetOverlap();
@@ -72,11 +73,11 @@ public class FruitEntity implements Comparable<FruitEntity> {
         }
 
         if (count == 0 && this.bounds.x > bounds.x && this.bounds.x < bounds.x + bounds.width) {
-            overlap.set(Overlaps.hit, 100);
+            overlap.set(Overlap.Type.hit, 100);
         } else if (count > 0 && this.bounds.overlaps(bounds)) {
-            overlap.set(Overlaps.hit, (this.bounds.height - (bounds.y - this.bounds.y)) / this.bounds.height * 100);
+            overlap.set(Overlap.Type.hit, (this.bounds.height - (bounds.y - this.bounds.y)) / this.bounds.height * 100);
         } else if (this.bounds.y + this.bounds.height < 0) {
-            overlap.set(Overlaps.miss, 0);
+            overlap.set(Overlap.Type.miss, 0);
         }
 
         return overlap;

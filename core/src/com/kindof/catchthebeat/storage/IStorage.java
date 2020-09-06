@@ -1,6 +1,6 @@
 package com.kindof.catchthebeat.storage;
 
-import com.kindof.catchthebeat.users.User;
+import com.kindof.catchthebeat.user.User;
 
 import java.io.File;
 

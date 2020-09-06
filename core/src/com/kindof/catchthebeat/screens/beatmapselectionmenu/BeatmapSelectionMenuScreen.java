@@ -3,7 +3,7 @@ package com.kindof.catchthebeat.screens.beatmapselectionmenu;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.files.FileHandle;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -17,26 +17,25 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.kindof.catchthebeat.beatmaps.Beatmap;
-import com.kindof.catchthebeat.resources.Res;
+import com.kindof.catchthebeat.resources.Globals;
 import com.kindof.catchthebeat.screens.BaseScreen;
-import com.kindof.catchthebeat.screens.MainMenuScreen;
+import com.kindof.catchthebeat.screens.beatmapselectionmenu.actors.beatmapscrollpane.BeatmapList;
+import com.kindof.catchthebeat.screens.beatmapselectionmenu.actors.beatmapscrollpane.BeatmapScrollPaneItem;
+import com.kindof.catchthebeat.ui.Alignment;
+import com.kindof.catchthebeat.ui.UI;
 import com.kindof.catchthebeat.ui.animation.AlphaAnimation;
-import com.kindof.catchthebeat.screens.beatmapselectionmenu.actors.beatmapscrollpanes.BeatmapList;
-import com.kindof.catchthebeat.screens.beatmapselectionmenu.actors.beatmapscrollpanes.BeatmapScrollPaneItem;
-import com.kindof.catchthebeat.ui.actors.buttons.Button;
-import com.kindof.catchthebeat.ui.actors.buttons.TouchUpEventListener;
-import com.kindof.catchthebeat.ui.actors.scrollpanes.ScrollPane;
-import com.kindof.catchthebeat.screens.beatmapselectionmenu.actors.sidebars.currentuser.downloadbeatmap.ScrollPaneItem;
-import com.kindof.catchthebeat.screens.beatmapselectionmenu.actors.sidebars.SideBar;
-import com.kindof.catchthebeat.tools.Font;
+import com.kindof.catchthebeat.ui.actors.button.Button;
+import com.kindof.catchthebeat.ui.actors.scrollpane.ScrollPane;
+import com.kindof.catchthebeat.screens.beatmapselectionmenu.actors.sidebar.SideBar;
 import com.kindof.catchthebeat.screens.game.GameScreen;
 import com.kindof.catchthebeat.tools.Time;
+import com.kindof.catchthebeat.ui.styles.LabelStyle;
+
+import static com.kindof.catchthebeat.screens.beatmapselectionmenu.actors.sidebar.currentuser.downloadbeatmap.BeatmapScrollPaneItem.initSongsMap;
 
 import java.util.Iterator;
 
 public class BeatmapSelectionMenuScreen extends BaseScreen {
-    private BitmapFont titleFont;
-    private BitmapFont artistFont;
     private BeatmapList scrollPaneItems;
     private Beatmap[] beatmaps;
     private ScrollPane<BeatmapScrollPaneItem> scrollPane;
@@ -56,20 +55,20 @@ public class BeatmapSelectionMenuScreen extends BaseScreen {
             @Override
             public boolean keyDown(int keyCode) {
                 if (keyCode == Input.Keys.BACK) {
-                    Res.GAME.setScreen(Res.MAIN_MENU_SCREEN);
+                    Globals.GAME.setScreenWithTransition(Globals.MAIN_MENU_SCREEN);
                 }
 
                 return super.keyDown(keyCode);
             }
         };
 
-        float statisticsButtonSize = Res.HEIGHT / 6.0f;
-        statisticsButton = new Button(new TouchUpEventListener() {
-            @Override
-            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                Res.GAME.setScreen(Res.STATISTIC_SCREEN);
-            }
-        },0, Res.HEIGHT - statisticsButtonSize, statisticsButtonSize, statisticsButtonSize, Res.UI_STATISTICS_BUTTON_UP, Res.UI_STATISTICS_BUTTON_PRESS);
+        float statisticsButtonSize = Globals.HEIGHT / 6.0f;
+        statisticsButton = new Button((event, x, y, pointer, button) -> Globals.GAME.setScreenWithTransition(Globals.STATISTIC_SCREEN), UI.STATISTICS_BUTTON + UI.UP_POSTFIX, UI.STATISTICS_BUTTON);
+        UI.calculateAndSetViewElementBounds(
+                statisticsButton,
+                Alignment.topLeft, 0,
+                0, Globals.HEIGHT - statisticsButtonSize, statisticsButtonSize, statisticsButtonSize
+        );
 
         rootTable = new Table();
         rootTable.setTouchable(Touchable.childrenOnly);
@@ -78,14 +77,14 @@ public class BeatmapSelectionMenuScreen extends BaseScreen {
         stage.addActor(rootTable);
 
         scrollPaneItems = new BeatmapList();
-        FileHandle[] fileHandles = Gdx.files.local(Res.LOCAL_PATH_TO_SONGS_DIRECTORY).list();
+        FileHandle[] fileHandles = Gdx.files.local(Globals.LOCAL_PATH_TO_SONGS_DIRECTORY).list();
         beatmaps = new Beatmap[fileHandles.length];
         for (int i = 0; i < beatmaps.length; i++) {
             beatmaps[i] = new Beatmap(Long.parseLong(fileHandles[i].name()));
         }
-        ScrollPaneItem.initSongsMap(fileHandles);
+        initSongsMap(fileHandles);
 
-        sideBar = new SideBar(Res.WIDTH, 0, Res.WIDTH / 2f, Res.HEIGHT, 40 * Res.RESOLUTION_WIDTH_SCALE);
+        sideBar = new SideBar(Globals.WIDTH, 0, Globals.WIDTH / 2f, Globals.HEIGHT, 40 * Globals.RESOLUTION_WIDTH_SCALE);
         sideBar.setTouchable(Touchable.enabled);
         stage.addActor(sideBar);
 
@@ -94,11 +93,10 @@ public class BeatmapSelectionMenuScreen extends BaseScreen {
         beatmapScrollPaneTable.align(Align.center);
 
         scrollPane = new ScrollPane<>(beatmapScrollPaneTable);
-        scrollPane.setMAX_ITEMS_ON_SCREEN(BeatmapList.MAX_ITEMS_ON_SCREEN);
+        scrollPane.setMaxItemsOnScreen(BeatmapList.MAX_ITEMS_ON_SCREEN);
 
-        rootTable.add(scrollPane).width(Res.WIDTH);
+        rootTable.add(scrollPane).width(Globals.WIDTH);
         rootTable.addActor(statisticsButton);
-        rootTable.pack();
 
         initBeatmapScrollPane(beatmaps);
     }
@@ -106,18 +104,21 @@ public class BeatmapSelectionMenuScreen extends BaseScreen {
     @Override
     public void show() {
         super.show();
-        statisticsButton.setUpFrame();
+    }
+
+    @Override
+    public void hide() {
+        super.hide();
+        statisticsButton.finish();
     }
 
     private void initBeatmapScrollPane(Beatmap[] beatmaps) {
-        padLeftRight = 5 * Res.RESOLUTION_WIDTH_SCALE;
-        tablePadTopBottom = 15 * Res.RESOLUTION_HEIGHT_SCALE;
-        tablePadLeftRight = 50 * Res.RESOLUTION_WIDTH_SCALE;
-        scrollPaneItemWidth = Res.WIDTH - 2 * (tablePadLeftRight - sideBar.getPad() / 2.0f);
-        scrollPaneItemHeight = (Res.HEIGHT - (BeatmapList.MAX_ITEMS_ON_SCREEN - 1) * tablePadTopBottom * 2) / (BeatmapList.MAX_ITEMS_ON_SCREEN - 1);
+        padLeftRight = 5 * Globals.RESOLUTION_WIDTH_SCALE;
+        tablePadTopBottom = 15 * Globals.RESOLUTION_HEIGHT_SCALE;
+        tablePadLeftRight = 50 * Globals.RESOLUTION_WIDTH_SCALE;
+        scrollPaneItemWidth = Globals.WIDTH - 2 * (tablePadLeftRight - sideBar.getPad() / 2.0f);
+        scrollPaneItemHeight = (Globals.HEIGHT - (BeatmapList.MAX_ITEMS_ON_SCREEN - 1) * tablePadTopBottom * 2) / (BeatmapList.MAX_ITEMS_ON_SCREEN - 1);
         scrollPane.setVisibleItemHeight(scrollPaneItemHeight + 2 * tablePadTopBottom);
-        titleFont = Font.getBitmapFont(Res.FONT_NAME, (int) (25 * Res.RESOLUTION_HEIGHT_SCALE));
-        artistFont = Font.getBitmapFont(Res.FONT_NAME, (int) (15 * Res.RESOLUTION_HEIGHT_SCALE));
 
         index = 0;
         for (Beatmap beatmap : beatmaps) {
@@ -129,17 +130,23 @@ public class BeatmapSelectionMenuScreen extends BaseScreen {
 
     public void addScrollPaneItem(Beatmap beatmap) {
         TextureRegion beatmapBackgroundTexture = new TextureRegion(beatmap.getBackground().getTexture());
-        // kY = coefficient-y | rY = real-size-y | fY = final-y | fHeight = final-height | bg = background
+        /*
+            kY = coefficient-y
+            rY = real-size-y
+            fY = final-y
+            fHeight = final-height
+            bg = background
+        */
         float
                 bgTextureHeight = beatmapBackgroundTexture.getRegionHeight(),
                 bgTextureWidth = beatmapBackgroundTexture.getRegionWidth(),
-                kY = Res.HEIGHT / bgTextureHeight,
-                rY = (Res.HEIGHT - Math.min(Res.HEIGHT, bgTextureHeight)) / 2.0f,
+                kY = Globals.HEIGHT / bgTextureHeight,
+                rY = (Globals.HEIGHT - Math.min(Globals.HEIGHT, bgTextureHeight)) / 2.0f,
                 fY = rY / kY,
                 fHeight = bgTextureHeight - fY * 2.0f;
 
         TextureRegion beatmapBackgroundRegion;
-        if (bgTextureHeight >= Res.HEIGHT) {
+        if (bgTextureHeight >= Globals.HEIGHT) {
             beatmapBackgroundRegion = new TextureRegion(beatmapBackgroundTexture, 0, (int) ((bgTextureHeight - scrollPaneItemHeight) / 2.0), (int) bgTextureWidth, (int) scrollPaneItemHeight);
         } else {
             beatmapBackgroundRegion = new TextureRegion(beatmapBackgroundTexture, 0, (int) fY, (int) bgTextureWidth, (int) fHeight);
@@ -149,11 +156,8 @@ public class BeatmapSelectionMenuScreen extends BaseScreen {
         beatmapBackgroundImage.setBounds(0, 0, scrollPaneItemWidth, scrollPaneItemHeight);
         beatmapBackgroundImage.setTouchable(Touchable.disabled);
 
-        Label.LabelStyle labelStyleTitle = new Label.LabelStyle();
-        labelStyleTitle.font = titleFont;
-
-        final Label.LabelStyle labelStyleArtist = new Label.LabelStyle();
-        labelStyleArtist.font = artistFont;
+        LabelStyle labelStyleTitle = new LabelStyle(Color.WHITE, 25);
+        LabelStyle labelStyleArtist = new LabelStyle(Color.WHITE, 15);
 
         final Label labelTitle = new Label(beatmap.getTitle(), labelStyleTitle);
         labelTitle.setBounds(padLeftRight, 0, scrollPaneItemWidth - padLeftRight, scrollPaneItemHeight);
@@ -165,13 +169,14 @@ public class BeatmapSelectionMenuScreen extends BaseScreen {
         labelArtist.setAlignment(Align.left);
         labelArtist.setTouchable(Touchable.disabled);
 
-        final Image backgroundImage = new Image(Res.SKIN_ATLAS.findRegion(Res.UI_BEATMAP_SELECTION_ITEM_BACKGROUND));
+        final Image backgroundImage = new Image(UI.SKIN_ATLAS.findRegion(UI.BEATMAP_BUTTON_FG));
         backgroundImage.setBounds(0, 0, scrollPaneItemWidth, scrollPaneItemHeight);
         backgroundImage.setTouchable(Touchable.disabled);
 
         final BeatmapScrollPaneItem beatmapScrollPaneItem = new BeatmapScrollPaneItem(beatmap, beatmapBackgroundImage, backgroundImage, labelTitle, labelArtist);
-        if (index > BeatmapList.MAX_ITEMS_ON_SCREEN)
+        if (index > BeatmapList.MAX_ITEMS_ON_SCREEN) {
             beatmapScrollPaneItem.setVisible(false);
+        }
         beatmapScrollPaneItem.addActor(beatmapBackgroundImage);
         beatmapScrollPaneItem.addActor(backgroundImage);
         beatmapScrollPaneItem.addActor(labelTitle);
@@ -197,9 +202,9 @@ public class BeatmapSelectionMenuScreen extends BaseScreen {
                     boolean hasSelectedAgain = scrollPaneItems.markItemAsSelected(beatmapScrollPaneItem);
                     if (hasSelectedAgain) {
                         scrollPaneItems.resetCurrentPreviousSelectedItem();
-                        Res.GAME_SCREEN = new GameScreen(new Beatmap(beatmapScrollPaneItem.getBeatmap().getId()));
-                        Res.GAME.setScreen(Res.GAME_SCREEN);
-                        Res.GAME_SCREEN.start();
+                        Globals.GAME_SCREEN = new GameScreen(new Beatmap(beatmapScrollPaneItem.getBeatmap().getId()));
+                        Globals.GAME.setScreen(Globals.GAME_SCREEN);
+                        Globals.GAME_SCREEN.start();
                     } else if (TimeUtils.nanoTime() - animationStartTime >= 0) {
                         AlphaAction labelTitleAlphaAction = alphaAnimationLabelTitle.nextAlphaAction();
                         AlphaAction labelArtistAlphaAction = alphaAnimationLabelArtist.nextAlphaAction();
@@ -264,9 +269,6 @@ public class BeatmapSelectionMenuScreen extends BaseScreen {
             if (selectedItem == null || selectedItemIndex != i)
                 beatmaps[i].dispose();
         }
-
-        titleFont.dispose();
-        artistFont.dispose();
         super.dispose();
     }
 }

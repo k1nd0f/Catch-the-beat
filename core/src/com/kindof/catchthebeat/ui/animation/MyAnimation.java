@@ -6,13 +6,13 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Array;
-import com.kindof.catchthebeat.resources.Res;
+import com.kindof.catchthebeat.ui.UI;
 
 public class MyAnimation {
     protected Animation<TextureRegionDrawable> drawableAnimation;
-    protected Animation<TextureAtlas.AtlasRegion> regionAnimation;
+    //protected Animation<TextureAtlas.AtlasRegion> regionAnimation;
     protected TextureRegionDrawable drawableFrame;
-    protected TextureRegion regionFrame;
+    //protected TextureRegion regionFrame;
     protected float stateTime;
     protected int framesCount;
 
@@ -21,11 +21,11 @@ public class MyAnimation {
     public MyAnimation(String framesName, Animation.PlayMode playMode) {
         initAnimation(framesName);
         drawableAnimation.setPlayMode(playMode);
-        regionAnimation.setPlayMode(playMode);
+        //regionAnimation.setPlayMode(playMode);
     }
 
     public void initAnimation(String framesName) {
-        Array<TextureAtlas.AtlasRegion> regionFrames = Res.SKIN_ATLAS.findRegions(framesName);
+        Array<TextureAtlas.AtlasRegion> regionFrames = UI.SKIN_ATLAS.findRegions(framesName);
         Array<TextureRegionDrawable> drawableFrames = new Array<>();
         for (int i = 0; i < regionFrames.size; i++) {
             TextureRegion frame = regionFrames.get(i);
@@ -33,21 +33,22 @@ public class MyAnimation {
         }
 
         drawableAnimation = new Animation<>(TIME_PER_FRAME, drawableFrames);
-        regionAnimation = new Animation<>(TIME_PER_FRAME, regionFrames);
+        //regionAnimation = new Animation<>(TIME_PER_FRAME, regionFrames);
         framesCount = regionFrames.size;
     }
 
     public void nextFrame() {
         stateTime += Gdx.graphics.getDeltaTime();
         drawableFrame = drawableAnimation.getKeyFrame(stateTime);
-        regionFrame = regionAnimation.getKeyFrame(stateTime);
+        //regionFrame = regionAnimation.getKeyFrame(stateTime);
     }
 
     public TextureRegionDrawable getDrawableFrame() {
         return drawableFrame;
     }
 
+    /*
     public TextureRegion getRegionFrame() {
         return regionFrame;
-    }
+    } */
 }

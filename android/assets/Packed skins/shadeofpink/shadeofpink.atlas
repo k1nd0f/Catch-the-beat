@@ -1,0 +1,487 @@
+
+shadeofpink.png
+size: 2048, 2048
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+hud-health-bar-bg
+  rotate: false
+  xy: 2, 41
+  size: 696, 36
+  orig: 696, 36
+  offset: 0, 0
+  index: -1
+hud-health-bar-fg
+  rotate: false
+  xy: 704, 2
+  size: 696, 36
+  orig: 696, 36
+  offset: 0, 0
+  index: -1
+rank-B
+  rotate: false
+  xy: 1364, 551
+  size: 420, 509
+  orig: 420, 509
+  offset: 0, 0
+  index: -1
+rank-D
+  rotate: false
+  xy: 1364, 40
+  size: 420, 509
+  orig: 420, 509
+  offset: 0, 0
+  index: -1
+rank-SS
+  rotate: false
+  xy: 1370, 1062
+  size: 420, 509
+  orig: 420, 509
+  offset: 0, 0
+  index: -1
+score-0
+  rotate: false
+  xy: 1998, 1906
+  size: 37, 54
+  orig: 37, 54
+  offset: 0, 0
+  index: -1
+score-1
+  rotate: false
+  xy: 1998, 1738
+  size: 36, 54
+  orig: 36, 54
+  offset: 0, 0
+  index: -1
+score-2
+  rotate: false
+  xy: 1998, 1570
+  size: 35, 54
+  orig: 35, 54
+  offset: 0, 0
+  index: -1
+score-3
+  rotate: false
+  xy: 1958, 1517
+  size: 34, 54
+  orig: 34, 54
+  offset: 0, 0
+  index: -1
+score-4
+  rotate: false
+  xy: 1998, 1962
+  size: 37, 54
+  orig: 37, 54
+  offset: 0, 0
+  index: -1
+score-5
+  rotate: false
+  xy: 1994, 1514
+  size: 34, 54
+  orig: 34, 54
+  offset: 0, 0
+  index: -1
+score-6
+  rotate: false
+  xy: 1998, 1682
+  size: 36, 54
+  orig: 36, 54
+  offset: 0, 0
+  index: -1
+score-7
+  rotate: false
+  xy: 1922, 1517
+  size: 34, 54
+  orig: 34, 54
+  offset: 0, 0
+  index: -1
+score-8
+  rotate: false
+  xy: 1998, 1626
+  size: 36, 54
+  orig: 36, 54
+  offset: 0, 0
+  index: -1
+score-9
+  rotate: false
+  xy: 1998, 1794
+  size: 36, 54
+  orig: 36, 54
+  offset: 0, 0
+  index: -1
+score-comma
+  rotate: false
+  xy: 1922, 1449
+  size: 27, 66
+  orig: 27, 66
+  offset: 0, 0
+  index: -1
+score-dot
+  rotate: false
+  xy: 1951, 1449
+  size: 24, 66
+  orig: 24, 66
+  offset: 0, 0
+  index: -1
+score-percent
+  rotate: false
+  xy: 1998, 1850
+  size: 36, 54
+  orig: 36, 54
+  offset: 0, 0
+  index: -1
+score-x
+  rotate: false
+  xy: 1977, 1462
+  size: 30, 50
+  orig: 30, 50
+  offset: 0, 0
+  index: -1
+ui-beatmap-editor-settings-button
+  rotate: false
+  xy: 1786, 30
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+ui-beatmap-selection-bg
+  rotate: false
+  xy: 2, 1248
+  size: 1366, 768
+  orig: 1366, 768
+  offset: 0, 0
+  index: -1
+ui-checkbox-off
+  rotate: false
+  xy: 1786, 804
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+ui-close-button
+  rotate: false
+  xy: 1786, 288
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+ui-dropdown-list-bg
+  rotate: false
+  xy: 2037, 2015
+  size: 1, 1
+  orig: 1, 1
+  offset: 0, 0
+  index: -1
+ui-dropdown-list-selection
+  rotate: false
+  xy: 2, 2
+  size: 700, 36
+  orig: 700, 36
+  offset: 0, 0
+  index: -1
+ui-fail-bg
+  rotate: false
+  xy: 2, 481
+  size: 1360, 765
+  orig: 1360, 765
+  offset: 0, 0
+  index: -1
+ui-friends-button
+  rotate: false
+  xy: 1786, 546
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+ui-heart-button
+  rotate: false
+  xy: 1102, 223
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+ui-osz-parse-button
+  rotate: false
+  xy: 1792, 1443
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+ui-pause-back
+  rotate: false
+  xy: 1792, 1351
+  size: 241, 90
+  orig: 241, 90
+  offset: 0, 0
+  index: -1
+ui-side-bar-bg
+  rotate: false
+  xy: 1370, 1573
+  size: 626, 443
+  orig: 626, 443
+  offset: 0, 0
+  index: -1
+ui-statistics-button-up
+  rotate: false
+  xy: 700, 79
+  size: 400, 400
+  orig: 400, 400
+  offset: 0, 0
+  index: -1
+ui-text-field-cursor
+  rotate: false
+  xy: 2040, 2015
+  size: 1, 1
+  orig: 1, 1
+  offset: 0, 0
+  index: -1
+ui-user-default-icon
+  rotate: false
+  xy: 404, 223
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+ui-user-icon-bg
+  rotate: false
+  xy: 2, 79
+  size: 400, 400
+  orig: 400, 400
+  offset: 0, 0
+  index: -1
+
+shadeofpink2.png
+size: 2048, 2048
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+catcher
+  rotate: false
+  xy: 846, 357
+  size: 300, 340
+  orig: 300, 340
+  offset: 0, 0
+  index: -1
+fruit-grape
+  rotate: false
+  xy: 704, 36
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+fruit-orange
+  rotate: false
+  xy: 1148, 441
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+fruit-pear
+  rotate: false
+  xy: 1600, 817
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+rank-A
+  rotate: false
+  xy: 1337, 1517
+  size: 420, 509
+  orig: 420, 509
+  offset: 0, 0
+  index: -1
+rank-C
+  rotate: false
+  xy: 424, 294
+  size: 420, 509
+  orig: 420, 509
+  offset: 0, 0
+  index: -1
+rank-S
+  rotate: false
+  xy: 2, 294
+  size: 420, 509
+  orig: 420, 509
+  offset: 0, 0
+  index: -1
+ui-beatmap-editor-delete-object-button
+  rotate: false
+  xy: 962, 99
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+ui-beatmap-editor-pause-button
+  rotate: false
+  xy: 1478, 301
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+ui-beatmap-editor-resume-button
+  rotate: false
+  xy: 1749, 1254
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+ui-checkbox-on
+  rotate: false
+  xy: 1759, 1770
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+ui-download-button
+  rotate: false
+  xy: 1478, 43
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+ui-dropdown-bg
+  rotate: false
+  xy: 2, 2
+  size: 700, 144
+  orig: 700, 144
+  offset: 0, 0
+  index: -1
+ui-edit-button
+  rotate: false
+  xy: 1406, 559
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+ui-gallery-button
+  rotate: false
+  xy: 1736, 301
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+ui-main-button
+  rotate: false
+  xy: 1342, 817
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+ui-music-button
+  rotate: false
+  xy: 1759, 1512
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+ui-pause-bg
+  rotate: false
+  xy: 2, 1275
+  size: 1333, 751
+  orig: 1333, 751
+  offset: 0, 0
+  index: -1
+ui-pause-continue
+  rotate: false
+  xy: 1337, 1425
+  size: 410, 90
+  orig: 410, 90
+  offset: 0, 0
+  index: -1
+ui-pause-retry
+  rotate: false
+  xy: 1337, 1333
+  size: 332, 90
+  orig: 332, 90
+  offset: 0, 0
+  index: -1
+ui-result-stats-bg
+  rotate: false
+  xy: 2, 148
+  size: 700, 144
+  orig: 700, 144
+  offset: 0, 0
+  index: -1
+ui-save-button
+  rotate: false
+  xy: 1379, 1075
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+ui-selection-beatmap-overlay-button
+  rotate: false
+  xy: 2, 1101
+  size: 1375, 172
+  orig: 1375, 172
+  offset: 0, 0
+  index: -1
+ui-send-button
+  rotate: false
+  xy: 1220, 183
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+ui-settings-button
+  rotate: false
+  xy: 1664, 559
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+ui-sign-in-button
+  rotate: false
+  xy: 2, 805
+  size: 936, 72
+  orig: 936, 72
+  offset: 0, 0
+  index: -1
+ui-sign-up-button
+  rotate: false
+  xy: 2, 879
+  size: 936, 72
+  orig: 936, 72
+  offset: 0, 0
+  index: -1
+ui-statistics-button
+  rotate: false
+  xy: 940, 699
+  size: 400, 400
+  orig: 400, 400
+  offset: 0, 0
+  index: -1
+ui-text-area-bg
+  rotate: false
+  xy: 2, 953
+  size: 936, 72
+  orig: 936, 72
+  offset: 0, 0
+  index: -1
+ui-text-field-bg
+  rotate: false
+  xy: 2, 1027
+  size: 936, 72
+  orig: 936, 72
+  offset: 0, 0
+  index: -1
+ui-upload-button
+  rotate: false
+  xy: 1736, 43
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+
+shadeofpink3.png
+size: 512, 512
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+fruit-apple
+  rotate: false
+  xy: 2, 2
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1

@@ -2,16 +2,17 @@ package com.kindof.catchthebeat.screens.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.kindof.catchthebeat.beatmaps.Beatmap;
-import com.kindof.catchthebeat.gameobjects.catchers.Catcher;
-import com.kindof.catchthebeat.resources.Res;
+import com.kindof.catchthebeat.gameobjects.catcher.Catcher;
+import com.kindof.catchthebeat.resources.Globals;
+import com.kindof.catchthebeat.ui.UI;
 
-public class GameScreen implements Screen, InputProcessor {
+public class GameScreen extends InputAdapter implements Screen {
     private SpriteBatch batch;
     private OrthographicCamera camera;
     private State state;
@@ -29,33 +30,7 @@ public class GameScreen implements Screen, InputProcessor {
         pauseMenuScreen = new PauseMenuScreen();
 
         this.beatmap = beatmap;
-        catcher = new Catcher(beatmap, Res.SKIN_ATLAS.findRegion(Res.CATCHER_IDLE), Res.WIDTH / 2f - Res.CATCHER_WIDTH / 2f, -Res.CATCHER_HEIGHT / Res.CATCHER_DELTA_DOWN_SCALE, Res.CATCHER_WIDTH, Res.CATCHER_HEIGHT);
-    }
-
-    public void start() {
-        setGameState(State.run);
-        beatmap.start();
-    }
-
-    public State getState() {
-        return state;
-    }
-
-    @Override
-    public void show() {
-        Gdx.input.setInputProcessor(this);
-    }
-
-    private void update(float delta) {
-        if (isRunning()) {
-            catcher.motionEvent(false);
-            beatmap.update(delta, catcher);
-        }
-    }
-
-    public void setPause() {
-        setGameState(State.pause);
-        beatmap.pause();
+        catcher = new Catcher(beatmap, UI.SKIN_ATLAS.findRegion(UI.CATCHER), Globals.WIDTH / 2f - Globals.CATCHER_WIDTH / 2f, -Globals.CATCHER_HEIGHT / Globals.CATCHER_DELTA_DOWN_SCALE, Globals.CATCHER_WIDTH, Globals.CATCHER_HEIGHT);
     }
 
     @Override
@@ -65,52 +40,75 @@ public class GameScreen implements Screen, InputProcessor {
 
         update(delta);
         batch.begin();
-            beatmap.draw(batch);
-            catcher.draw(batch);
+        beatmap.draw(batch);
+        catcher.draw(batch);
         batch.end();
+    }
+
+    private void update(float delta) {
+        if (isRunning()) {
+            catcher.motionEvent(false);
+            beatmap.update(delta, catcher);
+        }
+    }
+
+    public void start() {
+        this.state = State.run;
+        beatmap.start();
+    }
+
+    public State getState() {
+        return state;
     }
 
     private boolean isRunning() {
         return state == State.run;
     }
 
-    public void setGameState(State state) {
-        this.state = state;
+    public void setPause() {
+        this.state = State.pause;
+        beatmap.pause();
+        pauseMenuScreen.set(PauseMenuScreen.PauseType.pause);
+        Globals.GAME.setScreen(pauseMenuScreen);
     }
 
     public void resumeGame() {
-        Res.GAME.setScreen(this);
+        Globals.GAME.setScreen(this);
         beatmap.resume();
-        setGameState(State.run);
+        this.state = State.run;
     }
 
     public void quitFromBeatmap() {
         catcher.setVector(true, false);
         dispose();
-        Res.GAME_SCREEN = null;
-        Res.GAME.setScreen(Res.BEATMAP_SELECTION_MENU_SCREEN);
+        Globals.GAME_SCREEN = null;
+        Globals.GAME.setScreen(Globals.BEATMAP_SELECTION_MENU_SCREEN);
     }
 
     public void retry() {
         catcher.setVector(true, false);
         dispose();
-        Res.GAME_SCREEN = new GameScreen(new Beatmap(beatmap.getId()));
-        Res.GAME.setScreen(Res.GAME_SCREEN);
-        Res.GAME_SCREEN.start();
+        Globals.GAME_SCREEN = new GameScreen(new Beatmap(beatmap.getId()));
+        Globals.GAME.setScreen(Globals.GAME_SCREEN);
+        Globals.GAME_SCREEN.start();
     }
 
     @Override
-    public void resize(int width, int height) {
+    public boolean keyDown(int keycode) {
+        if (keycode == Input.Keys.BACK) {
+            setPause();
+        }
+
+        return false;
     }
 
     @Override
-    public void pause() {
-        setPause();
-        Res.GAME.setScreen(pauseMenuScreen);
+    public void show() {
+        Gdx.input.setInputProcessor(this);
     }
 
-    @Override
-    public void resume() {
+    public PauseMenuScreen getPauseMenuScreen() {
+        return pauseMenuScreen;
     }
 
     @Override
@@ -118,48 +116,16 @@ public class GameScreen implements Screen, InputProcessor {
     }
 
     @Override
-    public boolean keyDown(int keycode) {
-        if (keycode == Input.Keys.BACK) {
-            setPause();
-            Res.GAME.setScreen(pauseMenuScreen);
-        }
-
-        return false;
+    public void pause() {
+        setPause();
     }
 
     @Override
-    public boolean keyUp(int keycode) {
-        return false;
+    public void resume() {
     }
 
     @Override
-    public boolean keyTyped(char character) {
-        return false;
-    }
-
-    @Override
-    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        return false;
-    }
-
-    @Override
-    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        return false;
-    }
-
-    @Override
-    public boolean touchDragged(int screenX, int screenY, int pointer) {
-        return false;
-    }
-
-    @Override
-    public boolean mouseMoved(int screenX, int screenY) {
-        return false;
-    }
-
-    @Override
-    public boolean scrolled(int amount) {
-        return false;
+    public void resize(int width, int height) {
     }
 
     @Override
@@ -168,6 +134,6 @@ public class GameScreen implements Screen, InputProcessor {
         batch.dispose();
         pauseMenuScreen.dispose();
 
-        Res.GAME_SCREEN = null;
+        Globals.GAME_SCREEN = null;
     }
 }

@@ -11,36 +11,48 @@ import android.os.Bundle;
 import android.view.View;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.multidex.MultiDex;
+
 import android.os.Process;
-import android.widget.Toast;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.XmlReader;
+import com.jakewharton.processphoenix.ProcessPhoenix;
 import com.kindof.catchthebeat.resources.FileType;
-import com.kindof.catchthebeat.resources.Res;
-import com.kindof.catchthebeat.tools.OszParser;
+import com.kindof.catchthebeat.resources.Globals;
 import com.kindof.catchthebeat.tools.RealPathUtil;
+import com.kindof.catchthebeat.tools.Util;
+import com.kindof.catchthebeat.ui.dialog.AndroidDialogWindow;
+import com.kindof.catchthebeat.ui.intenthandler.AndroidIntentHandler;
+import com.kindof.catchthebeat.ui.toast.AndroidToastMaker;
+import com.kindof.catchthebeat.ui.toastmaker.IToastMaker;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class AndroidLauncher extends AndroidApplication implements IToastMaker {
+public class AndroidLauncher extends AndroidApplication {
 	private int currentApiVersion;
 	private boolean fullscreen;
-	private AndroidIntentHandler intentHandler;
+	private AndroidIntentHandler androidIntentHandler;
+	private AndroidToastMaker androidToastMaker;
+	private AndroidDialogWindow androidDialogWindow;
+	private AndroidNetworkConnection androidNetworkConnection;
 	private Authentication firebaseAuth;
 	private Database firebaseDatabase;
 	private Storage firebaseStorage;
-	private Context context;
 	private int flags;
 
     @Override
     @SuppressLint({"NewApi"})
     protected void onCreate (Bundle savedInstanceState) {
+        if (ProcessPhoenix.isPhoenixProcess(this)) {
+            return;
+        }
+
         super.onCreate(savedInstanceState);
         if (
                 ContextCompat.checkSelfPermission(this, Manifest.permission.INTERNET) != PackageManager.PERMISSION_DENIED ||
@@ -54,11 +66,14 @@ public class AndroidLauncher extends AndroidApplication implements IToastMaker {
             }, 0);
         }
 
-        context = getContext();
-        fullscreen = true;
-        firebaseAuth = new Authentication(context);
+        androidDialogWindow = new AndroidDialogWindow(this);
+        androidNetworkConnection = new AndroidNetworkConnection(this);
+        androidIntentHandler = new AndroidIntentHandler(this);
+        androidToastMaker = new AndroidToastMaker(this);
+
+        firebaseAuth = new Authentication(this);
+        firebaseStorage = new Storage(this);
         firebaseDatabase = new Database();
-        firebaseStorage = new Storage(context);
 
         // if it is first start of app, this block throw exception, else initialize fullscreen variable from 'config.xml' (local-path/config.xml)
         try {
@@ -73,6 +88,7 @@ public class AndroidLauncher extends AndroidApplication implements IToastMaker {
             fullscreen = element.getBoolean("Fullscreen");
         } catch (IOException e) {
             e.printStackTrace();
+            fullscreen = true;
         }
 
         currentApiVersion = Build.VERSION.SDK_INT;
@@ -82,21 +98,17 @@ public class AndroidLauncher extends AndroidApplication implements IToastMaker {
             getWindow().getDecorView().setSystemUiVisibility(flags);
 
             final View decorView = getWindow().getDecorView();
-            decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
-                @Override
-                public void onSystemUiVisibilityChange(int visibility) {
-                    if ((visibility & View.SYSTEM_UI_FLAG_FULLSCREEN) == 0) {
-                        decorView.setSystemUiVisibility(flags);
-                    }
+            decorView.setOnSystemUiVisibilityChangeListener(visibility -> {
+                if ((visibility & View.SYSTEM_UI_FLAG_FULLSCREEN) == 0) {
+                    decorView.setSystemUiVisibility(flags);
                 }
             });
         }
 
         AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
-        intentHandler = new AndroidIntentHandler(this);
         config.useCompass = false;
         config.useAccelerometer = false;
-        initialize(new CatchTheBeatGame(this, firebaseAuth, firebaseDatabase, firebaseStorage, intentHandler), config);
+        initialize(new CatchTheBeatGame(androidNetworkConnection, androidIntentHandler, androidToastMaker, androidDialogWindow, firebaseAuth, firebaseDatabase, firebaseStorage), config);
     }
 
     @Override
@@ -104,46 +116,35 @@ public class AndroidLauncher extends AndroidApplication implements IToastMaker {
         if (data != null) {
             Uri uri = data.getData();
             if (resultCode == RESULT_OK && requestCode == AndroidIntentHandler.SELECT_CODE && uri != null) {
-                intentHandler.setSelectedFileUri(uri);
+                androidIntentHandler.setSelectedFileUri(uri);
 
-                if (Res.CURRENT_FILE_TYPE == FileType.userIcon) {
+                if (Globals.CURRENT_FILE_TYPE == FileType.userIcon) {
                     firebaseStorage.putFile(uri);
                     String
-                            uid = Res.USER.getUid(),
-                            localDestPath = Res.LOCAL_PATH_TO_USERS_DIRECTORY + uid + "/";
+                            uid = Globals.USER.getUid(),
+                            localDestPath = Globals.LOCAL_PATH_TO_USERS_DIRECTORY + uid + "/";
 
                     FileHandle
                             destFileHandle = Gdx.files.local(localDestPath),
-                            srcFileHandlde = Gdx.files.absolute(RealPathUtil.getRealPath(context, uri));
+                            srcFileHandlde = Gdx.files.absolute(RealPathUtil.getRealPath(this, uri));
 
                     srcFileHandlde.copyTo(destFileHandle);
                     destFileHandle.child(srcFileHandlde.name()).file().renameTo(Gdx.files.local(localDestPath + "icon").file());
-                    Gdx.app.postRunnable(new Runnable() {
-                        @Override
-                        public void run() {
-                            Res.USER.initIcon();
-                        }
-                    });
-                } else if (Res.CURRENT_FILE_TYPE == FileType.beatmapEditorMusic) {
-                    copyFileToEditorTmpDirectory("audio.mp3", uri);
-                    Res.BEATMAP_EDITOR_SCREEN.setMusic(Gdx.audio.newMusic(Gdx.files.local(Res.LOCAL_PATH_TO_BEATMAP_EDITOR_TMP_DIRECTORY + "audio.mp3")));
-                    Res.CURRENT_FILE_TYPE = FileType.unknown;
-                } else if (Res.CURRENT_FILE_TYPE == FileType.beatmapEditorBackground) {
-                    copyFileToEditorTmpDirectory("background", uri);
-                    Gdx.app.postRunnable(new Runnable() {
-                        @Override
-                        public void run() {
-                            Res.BEATMAP_EDITOR_SCREEN.initBackground();
-                        }
-                    });
-                } else if (Res.CURRENT_FILE_TYPE == FileType.oszFile) {
+                    Gdx.app.postRunnable(() -> Globals.USER.initIcon());
+                } else if (Globals.CURRENT_FILE_TYPE == FileType.beatmapEditorMusic) {
+                    copyFileToLocalDirectory(uri, Globals.LOCAL_PATH_TO_BEATMAP_EDITOR_TMP_DIRECTORY, "audio.mp3");
+                    Gdx.app.postRunnable(() -> Globals.BEATMAP_EDITOR_SCREEN.initMusic());
+                } else if (Globals.CURRENT_FILE_TYPE == FileType.beatmapEditorBackground) {
+                    copyFileToLocalDirectory(uri, Globals.LOCAL_PATH_TO_BEATMAP_EDITOR_TMP_DIRECTORY, "background");
+                    Gdx.app.postRunnable(() -> Globals.BEATMAP_EDITOR_SCREEN.initBackground());
+                } else if (Globals.CURRENT_FILE_TYPE == FileType.oszFile) {
                     String
-                            oszFilePath = RealPathUtil.getRealPath(context, uri),
+                            oszFilePath = RealPathUtil.getRealPath(this, uri),
                             destinationPath = Gdx.files.getLocalStoragePath() + "osz/";
 
                     if (oszFilePath == null || !Gdx.files.absolute(oszFilePath).extension().equals("osz")) {
-                        makeToast("Select another file.", 0);
-                        Res.CURRENT_FILE_TYPE = FileType.unknown;
+                        androidToastMaker.makeToast("Select another file.", IToastMaker.LENGTH_SHORT);
+                        Globals.CURRENT_FILE_TYPE = FileType.unknown;
                         return;
                     }
 
@@ -151,11 +152,11 @@ public class AndroidLauncher extends AndroidApplication implements IToastMaker {
                             oszFile = Gdx.files.absolute(oszFilePath).file(),
                             destinationDirectory = Gdx.files.absolute(destinationPath).file();
 
-                    boolean isParsed = OszParser.unzipOsz(oszFile, destinationDirectory);
+                    boolean isParsed = Util.unzip(oszFile, destinationDirectory);
                     if (isParsed) {
-                        makeToast("*.osz file was parsed.", 0);
+                        androidToastMaker.makeToast("*.osz file was parsed.", IToastMaker.LENGTH_SHORT);
                     } else {
-                        makeToast("*.osz file wasn't parsed.", 0);
+                        androidToastMaker.makeToast("*.osz file wasn't parsed.", IToastMaker.LENGTH_SHORT);
                     }
 
                     // Check directory for unzip
@@ -167,19 +168,57 @@ public class AndroidLauncher extends AndroidApplication implements IToastMaker {
                 }
             }
         }
-        Res.CURRENT_FILE_TYPE = FileType.unknown;
+        Globals.CURRENT_FILE_TYPE = FileType.unknown;
+    }
+
+    private void copyFileToLocalDirectory(Uri uri, String localPath, String fileName) {
+        String absoluteSrcPath = RealPathUtil.getRealPath(this, uri);
+        FileHandle srcFile = Gdx.files.absolute(absoluteSrcPath);
+        FileHandle destinationDirectory = Gdx.files.local(localPath);
+        FileHandle destinationFile = destinationDirectory.child(fileName);
+
+        destinationFile.delete();
+        srcFile.copyTo(destinationFile);
     }
 
     private void copyFileToEditorTmpDirectory(String fileName, Uri uri) {
         String
-                absoluteSrcPath = RealPathUtil.getRealPath(context, uri),
-                localFilePath = Res.LOCAL_PATH_TO_BEATMAP_EDITOR_TMP_DIRECTORY + fileName;
+                absoluteSrcPath = RealPathUtil.getRealPath(this, uri),
+                localFilePath = Globals.LOCAL_PATH_TO_BEATMAP_EDITOR_TMP_DIRECTORY + fileName;
 
         if (Gdx.files.local(localFilePath).exists()) {
             Gdx.files.local(localFilePath).delete();
         }
 
         Gdx.files.absolute(absoluteSrcPath).copyTo(Gdx.files.local(localFilePath));
+    }
+
+    public AndroidIntentHandler getAndroidIntentHandler() {
+        return androidIntentHandler;
+    }
+
+    public AndroidToastMaker getAndroidToastMaker() {
+        return androidToastMaker;
+    }
+
+    public AndroidDialogWindow getAndroidDialogWindow() {
+        return androidDialogWindow;
+    }
+
+    public AndroidNetworkConnection getAndroidNetworkConnection() {
+        return androidNetworkConnection;
+    }
+
+    public Authentication getFirebaseAuth() {
+        return firebaseAuth;
+    }
+
+    public Database getFirebaseDatabase() {
+        return firebaseDatabase;
+    }
+
+    public Storage getFirebaseStorage() {
+        return firebaseStorage;
     }
 
     @Override
@@ -192,18 +231,14 @@ public class AndroidLauncher extends AndroidApplication implements IToastMaker {
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Process.killProcess(Process.myPid());
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(newBase);
+        MultiDex.install(this);
     }
 
     @Override
-    public void makeToast(final String text, final int length) {
-        this.getHandler().post(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(context, text, length).show();
-            }
-        });
+    protected void onDestroy() {
+        super.onDestroy();
+        Process.killProcess(Process.myPid());
     }
 }

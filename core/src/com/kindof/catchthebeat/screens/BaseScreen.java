@@ -1,6 +1,7 @@
 package com.kindof.catchthebeat.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -25,6 +26,10 @@ public abstract class BaseScreen implements Screen {
         for (Actor actor : actors) {
             table.addActor(actor);
         }
+    }
+
+    public InputProcessor getInputProcessor() {
+        return stage;
     }
 
     @Override

@@ -3,13 +3,13 @@ package com.kindof.catchthebeat.screens.beatmapeditor.actors;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
+import com.kindof.catchthebeat.ui.UI;
 
 public class HitLine {
+    private static Color COLOR = new Color(1f, 0.23f, 0.23f, 1f);
+
     private float x, y, width, height;
     private Rectangle bounds;
-    private ShapeRenderer shapeRenderer;
-
-    public static final Color COLOR = Color.RED;
 
     public HitLine(float x, float y, float width, float height) {
         this.x = x;
@@ -17,8 +17,6 @@ public class HitLine {
         this.width = width;
         this.height = height;
         bounds = new Rectangle(x, 0, width, y);
-        shapeRenderer = new ShapeRenderer();
-        shapeRenderer.setColor(COLOR);
     }
 
     public float getY() {
@@ -29,9 +27,11 @@ public class HitLine {
         return bounds;
     }
 
-    public void draw() {
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-            shapeRenderer.rect(x, y, width, height);
-        shapeRenderer.end();
+    public void draw(float alpha) {
+        COLOR = new Color(COLOR.r, COLOR.g, COLOR.b, alpha);
+        UI.SHAPE_RENDERER.setColor(COLOR);
+        UI.SHAPE_RENDERER.begin(ShapeRenderer.ShapeType.Filled);
+        UI.SHAPE_RENDERER.rect(x, y, width, height);
+        UI.SHAPE_RENDERER.end();
     }
 }

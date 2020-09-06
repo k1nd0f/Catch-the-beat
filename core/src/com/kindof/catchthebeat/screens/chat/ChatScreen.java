@@ -1,27 +1,25 @@
 package com.kindof.catchthebeat.screens.chat;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Cell;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextArea;
-import com.badlogic.gdx.scenes.scene2d.ui.TextField;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
-import com.kindof.catchthebeat.Chat;
+import com.kindof.catchthebeat.ui.Alignment;
+import com.kindof.catchthebeat.ui.UI;
+import com.kindof.catchthebeat.user.chat.Chat;
 import com.kindof.catchthebeat.database.IDatabase;
-import com.kindof.catchthebeat.resources.Res;
+import com.kindof.catchthebeat.resources.Globals;
 import com.kindof.catchthebeat.screens.BaseScreen;
-import com.kindof.catchthebeat.tools.Font;
-import com.kindof.catchthebeat.ui.actors.buttons.Button;
-import com.kindof.catchthebeat.ui.actors.buttons.TouchUpEventListener;
-import com.kindof.catchthebeat.ui.actors.scrollpanes.ScrollPane;
-import com.kindof.catchthebeat.users.Message;
+import com.kindof.catchthebeat.ui.actors.button.Button;
+import com.kindof.catchthebeat.ui.actors.scrollpane.ScrollPane;
+import com.kindof.catchthebeat.ui.styles.TextFieldStyle;
+import com.kindof.catchthebeat.user.chat.Message;
 
 import java.util.ArrayList;
 
@@ -29,10 +27,9 @@ public class ChatScreen extends BaseScreen {
     private Table messagesTable;
     private Button sendButton;
     private TextArea textArea;
-    private TextField.TextFieldStyle textFieldStyle;
     private ScrollPane<MessageItem> messagesScrollPane;
     private float itemWidth, itemHeight;
-    private int MAX_ITEMS_ON_SCREEN;
+    private int maxItemsOnScreen;
     private ArrayList<MessageItem> messageItems;
     private Chat chat;
     private int index;
@@ -49,7 +46,7 @@ public class ChatScreen extends BaseScreen {
             @Override
             public boolean keyDown(int keyCode) {
                 if (keyCode == Input.Keys.BACK) {
-                    Res.GAME.setScreen(Res.BEATMAP_SELECTION_MENU_SCREEN);
+                    Globals.GAME.setScreenWithTransition(Globals.BEATMAP_SELECTION_MENU_SCREEN);
                 }
 
                 return super.keyDown(keyCode);
@@ -60,36 +57,22 @@ public class ChatScreen extends BaseScreen {
         rootTable.setTouchable(Touchable.childrenOnly);
         rootTable.setFillParent(true);
 
-        float buttonSize = Res.HEIGHT / 8;
-        sendButton = new Button(new TouchUpEventListener() {
-            @Override
-            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                sendMessage();
-            }
-        }, Res.WIDTH - buttonSize, Res.HEIGHT - buttonSize, buttonSize, buttonSize, Res.SEND_MESSAGE_BUTTON_UP, Res.SEND_MESSAGE_BUTTON_PRESS);
+        float sendButtonSize = Globals.HEIGHT / 8.0f;
+        sendButton = new Button((event, x, y, pointer, button) -> sendMessage(), UI.SEND_BUTTON, UI.SEND_BUTTON);
+        UI.calculateAndSetViewElementBounds(
+                sendButton,
+                Alignment.center, 0,
+                Globals.WIDTH - sendButtonSize, Globals.HEIGHT - sendButtonSize, sendButtonSize, sendButtonSize
+        );
 
-        textFieldStyle = new TextField.TextFieldStyle();
-        textFieldStyle.background = new TextureRegionDrawable(Res.SKIN_ATLAS.findRegion(Res.TEXT_AREA_BACKGROUND));
-        textFieldStyle.fontColor = Color.WHITE;
-        textFieldStyle.font = Font.getBitmapFont(Res.FONT_NAME, (int) (25 * Res.RESOLUTION_HEIGHT_SCALE));
-        textFieldStyle.cursor = new TextureRegionDrawable(Res.SKIN_ATLAS.findRegion(Res.TEXT_FIELD_CURSOR)) {
-            @Override
-            public void draw(Batch batch, float x, float y, float width, float height) {
-                super.draw(batch, x, y, Res.TEXT_FIELD_CURSOR_WIDTH, height);
-            }
-        };
-
+        TextFieldStyle textFieldStyle = new TextFieldStyle(Color.WHITE, 25, UI.TEXT_AREA_BG);
         textArea = new TextArea("", textFieldStyle);
-        textArea.setBounds(0, Res.HEIGHT - buttonSize, Res.WIDTH - buttonSize, buttonSize);
-        textArea.setTextFieldListener(new TextField.TextFieldListener() {
-            @Override
-            public void keyTyped(TextField textField, char c) {
-                String text = textArea.getText();
-                if (c == '\n') {
-                    textArea.setText(text + "\n");
-                    textArea.moveCursorLine(textArea.getCursorLine() + 1);
-                    textArea.getOnscreenKeyboard().show(true);
-                }
+        textArea.setBounds(0, Globals.HEIGHT - sendButtonSize, Globals.WIDTH - sendButtonSize, sendButtonSize);
+        textArea.setTextFieldListener((textField, c) -> {
+            Gdx.input.setOnscreenKeyboardVisible(true);
+            if (c == '\n') {
+                int cursorLine = textArea.getCursorLine();
+                textArea.moveCursorLine(cursorLine + 1);
             }
         });
 
@@ -105,21 +88,21 @@ public class ChatScreen extends BaseScreen {
         messagesTable.align(Align.center);
 
         messageItems = new ArrayList<>();
-        MAX_ITEMS_ON_SCREEN = 3;
-        itemHeight = (Res.HEIGHT - sendButton.getHeight()) / (MAX_ITEMS_ON_SCREEN - 2);
-        itemWidth = Res.WIDTH;
+        maxItemsOnScreen = 3;
+        itemHeight = Globals.HEIGHT - sendButton.getHeight();
+        itemWidth = Globals.WIDTH;
         messagesScrollPane = new ScrollPane<>(messagesTable);
-        messagesScrollPane.setMAX_ITEMS_ON_SCREEN(MAX_ITEMS_ON_SCREEN);
+        messagesScrollPane.setMaxItemsOnScreen(maxItemsOnScreen);
         messagesScrollPane.setItems(messageItems);
         messagesScrollPane.setVisibleItemHeight(itemHeight);
-        messagesScrollPane.setBounds(0, 0, Res.WIDTH,  Res.HEIGHT - sendButton.getHeight());
+        messagesScrollPane.setBounds(0, 0, Globals.WIDTH,  Globals.HEIGHT - sendButton.getHeight());
 
         addActors(messagesScrollPane);
     }
 
     private void addMessageItem(Message message) {
         MessageItem messageItem = new MessageItem(message, itemWidth, itemHeight);
-        if (index > MAX_ITEMS_ON_SCREEN) {
+        if (index > maxItemsOnScreen) {
             messageItem.setVisible(false);
         }
         messagesTable.add(messageItem).size(itemWidth, itemHeight).row();
@@ -136,6 +119,7 @@ public class ChatScreen extends BaseScreen {
                     break;
                 }
             }
+
             if (!contains) {
                 addMessageItem(message);
             }
@@ -154,9 +138,9 @@ public class ChatScreen extends BaseScreen {
     private void sendMessage() {
         String text = textArea.getText();
         if (text.split(" ").length != 0 && !text.equals("")) {
-            IDatabase database = Res.GAME.getDatabase();
-            Message message = database.createNewMessage(Res.USER.getUid(), text);
-            Res.GAME.getDatabase().addMessage(chat.getId(), message);
+            IDatabase database = Globals.GAME.getDatabase();
+            Message message = database.createNewMessage(Globals.USER.getUid(), text);
+            Globals.GAME.getDatabase().addMessage(chat.getId(), message);
             textArea.setText("");
             textArea.getOnscreenKeyboard().show(false);
         }
@@ -169,6 +153,6 @@ public class ChatScreen extends BaseScreen {
     @Override
     public void hide() {
         super.hide();
-        Res.CURRENT_CHAT_SCREEN = null;
+        Globals.CURRENT_CHAT_SCREEN = null;
     }
 }

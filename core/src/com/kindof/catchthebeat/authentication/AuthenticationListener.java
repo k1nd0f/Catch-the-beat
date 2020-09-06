@@ -1,7 +1,7 @@
 package com.kindof.catchthebeat.authentication;
 
 public interface AuthenticationListener {
-    void onSendEmailSuccessful();
+    void onSendEmailSuccessful(String email);
 
     void onSendEmailFail(Exception e);
 
@@ -13,5 +13,5 @@ public interface AuthenticationListener {
 
     void onSignInFail(Exception e);
 
-    void onEmailIsNotVerified();
+    void onEmailIsNotVerified(String domain);
 }

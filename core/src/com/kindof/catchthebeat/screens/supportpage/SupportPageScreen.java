@@ -4,11 +4,11 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.kindof.catchthebeat.resources.Res;
+import com.kindof.catchthebeat.resources.Globals;
 import com.kindof.catchthebeat.screens.BaseScreen;
 
 /*
- *  screen with introduction
+ *  Screen with introduction
  *      / ... /
  *      / ... /
  *
@@ -25,7 +25,7 @@ public class SupportPageScreen extends BaseScreen {
             @Override
             public boolean keyDown(int keyCode) {
                 if (keyCode == Input.Keys.BACK) {
-                    Res.GAME.setScreen(Res.MAIN_MENU_SCREEN);
+                    Globals.GAME.setScreenWithTransition(Globals.MAIN_MENU_SCREEN);
                 }
 
                 return super.keyDown(keyCode);
@@ -35,10 +35,5 @@ public class SupportPageScreen extends BaseScreen {
         rootTable.setTouchable(Touchable.childrenOnly);
         rootTable.setFillParent(true);
         stage.addActor(rootTable);
-    }
-
-    @Override
-    public void hide() {
-        super.hide();
     }
 }

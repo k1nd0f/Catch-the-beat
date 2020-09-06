@@ -9,32 +9,29 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.kindof.catchthebeat.database.IDatabase;
-import com.kindof.catchthebeat.resources.Res;
-import com.kindof.catchthebeat.screens.beatmapeditor.BeatmapEntity;
+import com.kindof.catchthebeat.resources.Globals;
+import com.kindof.catchthebeat.beatmaps.BeatmapEntity;
 import com.kindof.catchthebeat.tools.Time;
-import com.kindof.catchthebeat.users.Friend;
-import com.kindof.catchthebeat.users.Message;
-import com.kindof.catchthebeat.users.User;
+import com.kindof.catchthebeat.user.chat.Chat;
+import com.kindof.catchthebeat.user.chat.Message;
+import com.kindof.catchthebeat.user.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Database implements IDatabase {
-    private FirebaseDatabase database;
     private DatabaseReference usersRef, beatmapsRef, beatmapCountRef, chatsRef, messageCountRef, chatCountRef;
     private HashMap<String, User> users;                                // HashMap<User-UID, User>
     private HashMap<Long, BeatmapEntity> beatmaps;                      // HashMap<Beatmap-ID, BeatmapEntity>
-    private Long beatmapCount, messageCount;
-    private Integer chatCount;
+    private Long beatmapCount, messageCount, chatCount;
     private HashMap<String, Chat> chats;                                // HashMap<Chat-ID, Chat>
 
     public Database() {
         users = new HashMap<>();
         beatmaps = new HashMap<>();
         chats = new HashMap<>();
-        beatmapCount = messageCount = 0L;
-        chatCount = 0;
-        database = FirebaseDatabase.getInstance();
+        beatmapCount = messageCount = chatCount = 0L;
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
         usersRef = database.getReference("Users");
         beatmapsRef = database.getReference("Beatmaps");
         beatmapCountRef = database.getReference("beatmapCount");
@@ -49,7 +46,7 @@ public class Database implements IDatabase {
                     User user = data.getValue(User.class);
                     users.put(user.getUid(), user);
                     if (user.getFriends() == null) {
-                        user.setFriends(new ArrayList<Friend>());
+                        user.setFriends(new ArrayList<>());
                     }
                 }
             }
@@ -76,7 +73,7 @@ public class Database implements IDatabase {
         beatmapCountRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                beatmapCount = (Long) dataSnapshot.getValue();
+                beatmapCount = dataSnapshot.getValue(Long.class);
             }
 
             @Override
@@ -92,15 +89,12 @@ public class Database implements IDatabase {
                     final Chat chat = data.getValue(Chat.class);
                     String chatId = chat.getId().toString();
                     chats.put(chatId, chat);
-                    if (Res.CURRENT_CHAT_SCREEN != null && Res.CURRENT_CHAT_SCREEN.getChat().getId().equals(chat.getId())) {
-                        Gdx.app.postRunnable(new Runnable() {
-                            @Override
-                            public void run() {
-                                ArrayList<Message> chatMessages = chat.getChatMessages();
-                                Res.CURRENT_CHAT_SCREEN.reInitMessageItems(chatMessages);
-                                if (Res.USER.getUid().equals(chatMessages.get(chatMessages.size() - 1).getSenderUid()))
-                                    Res.CURRENT_CHAT_SCREEN.scrollToLastMessage();
-                            }
+                    if (Globals.CURRENT_CHAT_SCREEN != null && Globals.CURRENT_CHAT_SCREEN.getChat().getId().equals(chat.getId())) {
+                        Gdx.app.postRunnable(() -> {
+                            ArrayList<Message> chatMessages = chat.getChatMessages();
+                            Globals.CURRENT_CHAT_SCREEN.reInitMessageItems(chatMessages);
+                            if (Globals.USER.getUid().equals(chatMessages.get(chatMessages.size() - 1).getSenderUid()))
+                                Globals.CURRENT_CHAT_SCREEN.scrollToLastMessage();
                         });
                     }
                 }
@@ -114,7 +108,7 @@ public class Database implements IDatabase {
         messageCountRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                messageCount = (Long) dataSnapshot.getValue();
+                messageCount = dataSnapshot.getValue(Long.class);
             }
 
             @Override
@@ -125,7 +119,7 @@ public class Database implements IDatabase {
         chatCountRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                chatCount = dataSnapshot.getValue(Integer.class);
+                chatCount = dataSnapshot.getValue(Long.class);
             }
 
             @Override
@@ -187,17 +181,17 @@ public class Database implements IDatabase {
     }
 
     @Override
-    public void setChatCount(Integer chatCount) {
+    public void setChatCount(Long chatCount) {
         chatCountRef.setValue(chatCount);
     }
 
     @Override
-    public Integer getChatCount() {
+    public Long getChatCount() {
         return chatCount;
     }
 
     @Override
-    public void addMessage(Integer chatId, Message message) {
+    public void addMessage(Long chatId, Message message) {
         Chat chat = chats.get(chatId.toString());
         chat.addMessage(message);
         chatsRef.setValue(chats);
@@ -211,7 +205,7 @@ public class Database implements IDatabase {
     }
 
     @Override
-    public Chat getChat(Integer chatId) {
+    public Chat getChat(Long chatId) {
         return chats.get(chatId.toString());
     }
 

@@ -37,15 +37,15 @@ public class Settings {
      * Tags:
      *      tags = "tag1 tag2 tag3 tag4 tagN"
      *
-     ***********************************************************/
+     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 
     public Settings() {
         fruitType = "apple";
         samples = title = artist = tags = "";
         offset = difficulty = bpm = 0;
-        healthRate = 0.01f;
-        scrollSpeed = 1f;
+        healthRate = 10;
+        scrollSpeed = 900;
         beatmapId = 0L;
     }
 
