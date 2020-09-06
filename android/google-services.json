@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "668193850937",
+    "firebase_url": "https://catch-the-beat.firebaseio.com",
+    "project_id": "catch-the-beat",
+    "storage_bucket": "catch-the-beat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:668193850937:android:a952c6f8e595e715862fe8",
+        "android_client_info": {
+          "package_name": "com.kindof.catchthebeat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "668193850937-r58gren3j9a8auivrnc32acfg9hda8sh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRkQcJrCdcp9QtwL8r2CCFQEgIc8KjUpw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "668193850937-r58gren3j9a8auivrnc32acfg9hda8sh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,1469 @@
+
+Sujak.png
+size: 2018,2044
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+checkbox-off
+  rotate: false
+  xy: 1844, 190
+  size: 144, 144
+  orig: 144, 144
+  offset: 0, 0
+  index: -1
+checkbox-on
+  rotate: false
+  xy: 1844, 336
+  size: 144, 144
+  orig: 144, 144
+  offset: 0, 0
+  index: -1
+default-percent
+  rotate: false
+  xy: 1922, 1816
+  size: 49, 54
+  orig: 49, 54
+  offset: 0, 0
+  index: -1
+dropdown-list-background
+  rotate: false
+  xy: 1922, 1030
+  size: 1, 1
+  orig: 1, 1
+  offset: 0, 0
+  index: -1
+fail-background
+  rotate: false
+  xy: 0, 197
+  size: 1360, 765
+  orig: 1360, 765
+  offset: 0, 0
+  index: -1
+fruit-orange
+  rotate: false
+  xy: 1118, 67
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+fruit-pear
+  rotate: false
+  xy: 988, 67
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+score-0
+  rotate: false
+  xy: 1922, 1704
+  size: 37, 54
+  orig: 37, 54
+  offset: 0, 0
+  index: -1
+score-1
+  rotate: false
+  xy: 1922, 1760
+  size: 37, 54
+  orig: 37, 54
+  offset: 0, 0
+  index: -1
+score-2
+  rotate: false
+  xy: 1922, 1592
+  size: 37, 54
+  orig: 37, 54
+  offset: 0, 0
+  index: -1
+score-3
+  rotate: false
+  xy: 1922, 1256
+  size: 37, 54
+  orig: 37, 54
+  offset: 0, 0
+  index: -1
+score-4
+  rotate: false
+  xy: 1922, 1312
+  size: 37, 54
+  orig: 37, 54
+  offset: 0, 0
+  index: -1
+score-5
+  rotate: false
+  xy: 1922, 1536
+  size: 37, 54
+  orig: 37, 54
+  offset: 0, 0
+  index: -1
+score-6
+  rotate: false
+  xy: 1922, 1480
+  size: 37, 54
+  orig: 37, 54
+  offset: 0, 0
+  index: -1
+score-7
+  rotate: false
+  xy: 1922, 1424
+  size: 37, 54
+  orig: 37, 54
+  offset: 0, 0
+  index: -1
+score-8
+  rotate: false
+  xy: 1922, 1368
+  size: 37, 54
+  orig: 37, 54
+  offset: 0, 0
+  index: -1
+score-9
+  rotate: false
+  xy: 1922, 1648
+  size: 37, 54
+  orig: 37, 54
+  offset: 0, 0
+  index: -1
+score-comma
+  rotate: false
+  xy: 1922, 1038
+  size: 27, 66
+  orig: 27, 66
+  offset: 0, 0
+  index: -1
+score-dot
+  rotate: false
+  xy: 1922, 1106
+  size: 28, 92
+  orig: 28, 92
+  offset: 0, 0
+  index: -1
+score-percent
+  rotate: false
+  xy: 1922, 1872
+  size: 60, 74
+  orig: 60, 74
+  offset: 0, 0
+  index: -1
+score-x
+  rotate: false
+  xy: 1922, 1200
+  size: 37, 54
+  orig: 37, 54
+  offset: 0, 0
+  index: -1
+send-message-button
+  rotate: false
+  xy: 1922, 1948
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+text-field-cursor
+  rotate: false
+  xy: 1922, 1033
+  size: 3, 3
+  orig: 3, 3
+  offset: 0, 0
+  index: -1
+ui-add-delete-friend-screen-background
+  rotate: false
+  xy: 0, 964
+  size: 1920, 1080
+  orig: 1920, 1080
+  offset: 0, 0
+  index: -1
+ui-beatmap-editor-delete-object-button
+  rotate: false
+  xy: 704, 56
+  size: 140, 139
+  orig: 140, 139
+  offset: 0, 0
+  index: -1
+ui-beatmap-editor-pause-button
+  rotate: false
+  xy: 1844, 49
+  size: 140, 139
+  orig: 140, 139
+  offset: 0, 0
+  index: -1
+ui-beatmap-editor-resume-button
+  rotate: false
+  xy: 846, 56
+  size: 140, 139
+  orig: 140, 139
+  offset: 0, 0
+  index: -1
+ui-beatmap-editor-settings-button
+  rotate: false
+  xy: 1362, 0
+  size: 480, 480
+  orig: 480, 480
+  offset: 0, 0
+  index: -1
+ui-main-menu-button
+  rotate: false
+  xy: 1922, 1027
+  size: 1, 1
+  orig: 1, 1
+  offset: 0, 0
+  index: -1
+ui-result-tab-score-background
+  rotate: false
+  xy: 0, 15
+  size: 702, 180
+  orig: 702, 180
+  offset: 0, 0
+  index: -1
+ui-side-bar-background
+  rotate: false
+  xy: 1362, 604
+  size: 637, 358
+  orig: 637, 358
+  offset: 0, 0
+  index: -1
+ui-side-bar-current-user-background
+  rotate: false
+  xy: 1362, 482
+  size: 632, 120
+  orig: 632, 120
+  offset: 0, 0
+  index: -1
+
+Sujak2.png
+size: 2034,2045
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+add-delete-friend-button
+  rotate: false
+  xy: 1202, 1019
+  size: 513, 512
+  orig: 513, 512
+  offset: 0, 0
+  index: -1
+dropdown-background
+  rotate: false
+  xy: 1202, 873
+  size: 702, 144
+  orig: 702, 144
+  offset: 0, 0
+  index: -1
+fruit-apple
+  rotate: false
+  xy: 1906, 892
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+fruit-bananas
+  rotate: false
+  xy: 1899, 5
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+fruit-grapes
+  rotate: false
+  xy: 1906, 762
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+health-bar-background
+  rotate: false
+  xy: 0, 33
+  size: 1390, 88
+  orig: 1390, 88
+  offset: 0, 0
+  index: -1
+osz-parse-button
+  rotate: false
+  xy: 1769, 5
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+rank-B
+  rotate: false
+  xy: 1406, 362
+  size: 420, 509
+  orig: 420, 509
+  offset: 0, 0
+  index: -1
+select-image-icon-button
+  rotate: false
+  xy: 1202, 1533
+  size: 513, 512
+  orig: 513, 512
+  offset: 0, 0
+  index: -1
+ui-beatmap-editor-settings-music-button
+  rotate: false
+  xy: 1769, 135
+  size: 225, 225
+  orig: 225, 225
+  offset: 0, 0
+  index: -1
+ui-beatmap-editor-settings-save-beatmap-button
+  rotate: false
+  xy: 1717, 1022
+  size: 301, 301
+  orig: 301, 301
+  offset: 0, 0
+  index: -1
+ui-exit-button
+  rotate: false
+  xy: 1717, 1325
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: -1
+ui-statistic-screen-background
+  rotate: false
+  xy: 0, 123
+  size: 1404, 720
+  orig: 1404, 720
+  offset: 0, 0
+  index: -1
+ui-statistics-button-press
+  rotate: false
+  xy: 0, 845
+  size: 1200, 1200
+  orig: 1200, 1200
+  offset: 0, 0
+  index: 11
+user-icon-background
+  rotate: false
+  xy: 1406, 0
+  size: 361, 360
+  orig: 361, 360
+  offset: 0, 0
+  index: -1
+
+Sujak3.png
+size: 2036,2012
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+catcher-fail
+  rotate: false
+  xy: 1675, 58
+  size: 300, 340
+  orig: 300, 340
+  offset: 0, 0
+  index: -1
+health-bar-foreground
+  rotate: false
+  xy: 0, 0
+  size: 1390, 88
+  orig: 1390, 88
+  offset: 0, 0
+  index: -1
+ui-beatmap-editor-button-press
+  rotate: false
+  xy: 1689, 1292
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 19
+ui-beatmap-editor-button-press
+  rotate: false
+  xy: 1392, 40
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 0
+ui-result-tab-BPM-background
+  rotate: false
+  xy: 1202, 854
+  size: 702, 144
+  orig: 702, 144
+  offset: 0, 0
+  index: -1
+ui-result-tab-accuracy-background
+  rotate: false
+  xy: 1202, 762
+  size: 702, 90
+  orig: 702, 90
+  offset: 0, 0
+  index: -1
+ui-result-tab-background
+  rotate: false
+  xy: 0, 1292
+  size: 1404, 720
+  orig: 1404, 720
+  offset: 0, 0
+  index: -1
+ui-result-tab-difficulty-background
+  rotate: false
+  xy: 1202, 1146
+  size: 702, 144
+  orig: 702, 144
+  offset: 0, 0
+  index: -1
+ui-result-tab-health-rate-background
+  rotate: false
+  xy: 1202, 1000
+  size: 702, 144
+  orig: 702, 144
+  offset: 0, 0
+  index: -1
+ui-statistics-button-press
+  rotate: false
+  xy: 0, 90
+  size: 1200, 1200
+  orig: 1200, 1200
+  offset: 0, 0
+  index: 14
+ui-support-page-button-press
+  rotate: false
+  xy: 1406, 1292
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 21
+user-default-icon
+  rotate: false
+  xy: 1675, 400
+  size: 361, 360
+  orig: 361, 360
+  offset: 0, 0
+  index: -1
+
+Sujak4.png
+size: 2017,2014
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+catcher-idle
+  rotate: false
+  xy: 1717, 1674
+  size: 300, 340
+  orig: 300, 340
+  offset: 0, 0
+  index: -1
+dropdown-list-selection
+  rotate: false
+  xy: 704, 46
+  size: 702, 44
+  orig: 702, 44
+  offset: 0, 0
+  index: -1
+ui-beatmap-editor-button-press
+  rotate: false
+  xy: 1705, 780
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 6
+ui-beatmap-editor-button-press
+  rotate: false
+  xy: 1689, 58
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 12
+ui-beatmap-editor-settings-background-button
+  rotate: false
+  xy: 1202, 1502
+  size: 513, 512
+  orig: 513, 512
+  offset: 0, 0
+  index: -1
+ui-beatmap-editor-settings-upload-beatmap-button
+  rotate: false
+  xy: 1202, 999
+  size: 501, 501
+  orig: 501, 501
+  offset: 0, 0
+  index: -1
+ui-main-menu-background
+  rotate: false
+  xy: 0, 92
+  size: 1404, 720
+  orig: 1404, 720
+  offset: 0, 0
+  index: -1
+ui-result-tab-combo-background
+  rotate: false
+  xy: 0, 0
+  size: 702, 90
+  orig: 702, 90
+  offset: 0, 0
+  index: -1
+ui-statistics-button-press
+  rotate: false
+  xy: 0, 814
+  size: 1200, 1200
+  orig: 1200, 1200
+  offset: 0, 0
+  index: 16
+ui-support-page-button-press
+  rotate: false
+  xy: 1406, 277
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 22
+
+Sujak5.png
+size: 1866,2046
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+beatmap-download-button
+  rotate: false
+  xy: 1202, 824
+  size: 500, 500
+  orig: 500, 500
+  offset: 0, 0
+  index: -1
+pause-background
+  rotate: false
+  xy: 0, 146
+  size: 1000, 698
+  orig: 1000, 698
+  offset: 0, 0
+  index: -1
+rank-D
+  rotate: false
+  xy: 1002, 313
+  size: 420, 509
+  orig: 420, 509
+  offset: 0, 0
+  index: -1
+rank-SS
+  rotate: false
+  xy: 1424, 313
+  size: 420, 509
+  orig: 420, 509
+  offset: 0, 0
+  index: -1
+sign-up-button
+  rotate: false
+  xy: 1002, 167
+  size: 864, 144
+  orig: 864, 144
+  offset: 0, 0
+  index: -1
+text-area-background
+  rotate: false
+  xy: 866, 0
+  size: 864, 144
+  orig: 864, 144
+  offset: 0, 0
+  index: -1
+text-field-background
+  rotate: false
+  xy: 0, 0
+  size: 864, 144
+  orig: 864, 144
+  offset: 0, 0
+  index: -1
+ui-statistics-button-press
+  rotate: false
+  xy: 0, 846
+  size: 1200, 1200
+  orig: 1200, 1200
+  offset: 0, 0
+  index: 17
+ui-support-page-button-press
+  rotate: false
+  xy: 1202, 1326
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 11
+ui-support-page-button-press
+  rotate: false
+  xy: 1485, 1326
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 27
+
+Sujak6.png
+size: 2004,1926
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+button-minus
+  rotate: false
+  xy: 1202, 804
+  size: 400, 400
+  orig: 400, 400
+  offset: 0, 0
+  index: -1
+button-plus
+  rotate: false
+  xy: 1604, 804
+  size: 400, 400
+  orig: 400, 400
+  offset: 0, 0
+  index: -1
+pause-quit
+  rotate: false
+  xy: 0, 242
+  size: 1404, 240
+  orig: 1404, 240
+  offset: 0, 0
+  index: -1
+pause-resume
+  rotate: false
+  xy: 0, 0
+  size: 1404, 240
+  orig: 1404, 240
+  offset: 0, 0
+  index: -1
+pause-retry
+  rotate: false
+  xy: 0, 484
+  size: 1404, 240
+  orig: 1404, 240
+  offset: 0, 0
+  index: -1
+ui-beatmap-editor-button-press
+  rotate: false
+  xy: 1485, 1206
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 7
+ui-settings-button-press
+  rotate: false
+  xy: 1406, 82
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 10
+ui-settings-button-press
+  rotate: false
+  xy: 1689, 82
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 11
+ui-statistics-button-press
+  rotate: false
+  xy: 0, 726
+  size: 1200, 1200
+  orig: 1200, 1200
+  offset: 0, 0
+  index: 18
+ui-support-page-button-press
+  rotate: false
+  xy: 1202, 1206
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 23
+
+Sujak7.png
+size: 1979,1953
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+rank-A
+  rotate: false
+  xy: 422, 1001
+  size: 420, 509
+  orig: 420, 509
+  offset: 0, 0
+  index: -1
+rank-C
+  rotate: false
+  xy: 1360, 1444
+  size: 420, 509
+  orig: 420, 509
+  offset: 0, 0
+  index: -1
+rank-S
+  rotate: false
+  xy: 0, 1001
+  size: 420, 509
+  orig: 420, 509
+  offset: 0, 0
+  index: -1
+sign-in-button
+  rotate: false
+  xy: 0, 1668
+  size: 864, 144
+  orig: 864, 144
+  offset: 0, 0
+  index: -1
+ui-beatmap-editor-bottom-panel-background
+  rotate: false
+  xy: 0, 1814
+  size: 1264, 139
+  orig: 1264, 139
+  offset: 0, 0
+  index: -1
+ui-beatmap-selection-item-background
+  rotate: false
+  xy: 0, 1512
+  size: 1358, 154
+  orig: 1358, 154
+  offset: 0, 0
+  index: -1
+ui-settings-button-press
+  rotate: false
+  xy: 844, 790
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 13
+ui-settings-button-press
+  rotate: false
+  xy: 1127, 722
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 14
+ui-settings-button-press
+  rotate: false
+  xy: 1410, 722
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 15
+ui-settings-button-press
+  rotate: false
+  xy: 1693, 722
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 17
+ui-settings-button-press
+  rotate: false
+  xy: 0, 279
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 18
+ui-settings-button-press
+  rotate: false
+  xy: 283, 279
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 19
+ui-settings-button-press
+  rotate: false
+  xy: 566, 68
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 5
+ui-settings-button-press
+  rotate: false
+  xy: 849, 0
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 6
+ui-settings-button-press
+  rotate: false
+  xy: 1132, 0
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 7
+ui-settings-button-press
+  rotate: false
+  xy: 1415, 0
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 8
+ui-settings-button-press
+  rotate: false
+  xy: 1698, 0
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 9
+
+Sujak8.png
+size: 1979,1922
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ui-beatmap-editor-button-press
+  rotate: false
+  xy: 283, 0
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 22
+ui-settings-button-press
+  rotate: false
+  xy: 0, 0
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 2
+ui-settings-button-press
+  rotate: false
+  xy: 1202, 1202
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 24
+ui-settings-button-press
+  rotate: false
+  xy: 1485, 1202
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 20
+ui-settings-button-press
+  rotate: false
+  xy: 566, 0
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 22
+ui-settings-button-press
+  rotate: false
+  xy: 849, 0
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 23
+ui-settings-button-press
+  rotate: false
+  xy: 1415, 480
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 16
+ui-statistics-button-press
+  rotate: false
+  xy: 0, 722
+  size: 1200, 1200
+  orig: 1200, 1200
+  offset: 0, 0
+  index: 9
+ui-support-page-button-press
+  rotate: false
+  xy: 1698, 480
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 10
+ui-support-page-button-up
+  rotate: false
+  xy: 1132, 0
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: -1
+
+Sujak9.png
+size: 1979,1922
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ui-beatmap-editor-button-press
+  rotate: false
+  xy: 0, 0
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 1
+ui-beatmap-editor-button-press
+  rotate: false
+  xy: 1698, 480
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 3
+ui-statistics-button-press
+  rotate: false
+  xy: 0, 722
+  size: 1200, 1200
+  orig: 1200, 1200
+  offset: 0, 0
+  index: 13
+ui-support-page-button-press
+  rotate: false
+  xy: 1202, 1202
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 12
+ui-support-page-button-press
+  rotate: false
+  xy: 283, 0
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 14
+ui-support-page-button-press
+  rotate: false
+  xy: 1485, 1202
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 15
+ui-support-page-button-press
+  rotate: false
+  xy: 566, 0
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 16
+ui-support-page-button-press
+  rotate: false
+  xy: 849, 0
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 17
+ui-support-page-button-press
+  rotate: false
+  xy: 1132, 0
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 18
+ui-support-page-button-press
+  rotate: false
+  xy: 1415, 480
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 4
+
+Sujak10.png
+size: 1979,1922
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ui-beatmap-editor-button-press
+  rotate: false
+  xy: 0, 0
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 8
+ui-beatmap-editor-button-press
+  rotate: false
+  xy: 566, 0
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 10
+ui-beatmap-editor-button-press
+  rotate: false
+  xy: 1132, 0
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 11
+ui-beatmap-editor-button-press
+  rotate: false
+  xy: 1698, 480
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 13
+ui-settings-button-press
+  rotate: false
+  xy: 1202, 1202
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 0
+ui-statistics-button-press
+  rotate: false
+  xy: 0, 722
+  size: 1200, 1200
+  orig: 1200, 1200
+  offset: 0, 0
+  index: 20
+ui-support-page-button-press
+  rotate: false
+  xy: 283, 0
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 24
+ui-support-page-button-press
+  rotate: false
+  xy: 1485, 1202
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 25
+ui-support-page-button-press
+  rotate: false
+  xy: 849, 0
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 13
+ui-support-page-button-press
+  rotate: false
+  xy: 1415, 480
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 1
+
+Sujak11.png
+size: 1979,1922
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ui-beatmap-editor-button-press
+  rotate: false
+  xy: 0, 0
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 14
+ui-beatmap-editor-button-press
+  rotate: false
+  xy: 1202, 1202
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 15
+ui-beatmap-editor-button-press
+  rotate: false
+  xy: 283, 0
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 16
+ui-beatmap-editor-button-press
+  rotate: false
+  xy: 1485, 1202
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 17
+ui-beatmap-editor-button-press
+  rotate: false
+  xy: 566, 0
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 18
+ui-beatmap-editor-button-press
+  rotate: false
+  xy: 1698, 480
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 20
+ui-statistics-button-press
+  rotate: false
+  xy: 0, 722
+  size: 1200, 1200
+  orig: 1200, 1200
+  offset: 0, 0
+  index: 21
+ui-support-page-button-press
+  rotate: false
+  xy: 849, 0
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 19
+ui-support-page-button-press
+  rotate: false
+  xy: 1132, 0
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 20
+ui-support-page-button-press
+  rotate: false
+  xy: 1415, 480
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 2
+
+Sujak12.png
+size: 1979,1922
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ui-beatmap-editor-button-press
+  rotate: false
+  xy: 0, 0
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 21
+ui-beatmap-editor-button-press
+  rotate: false
+  xy: 1202, 1202
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 23
+ui-beatmap-editor-button-press
+  rotate: false
+  xy: 1698, 480
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 2
+ui-beatmap-editor-button-up
+  rotate: false
+  xy: 1415, 480
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: -1
+ui-settings-button-press
+  rotate: false
+  xy: 283, 0
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 3
+ui-settings-button-press
+  rotate: false
+  xy: 1132, 0
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 4
+ui-settings-button-up
+  rotate: false
+  xy: 566, 0
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: -1
+ui-statistics-button-press
+  rotate: false
+  xy: 0, 722
+  size: 1200, 1200
+  orig: 1200, 1200
+  offset: 0, 0
+  index: 22
+ui-support-page-button-press
+  rotate: false
+  xy: 1485, 1202
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 26
+ui-support-page-button-press
+  rotate: false
+  xy: 849, 0
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 3
+
+Sujak13.png
+size: 1979,1922
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ui-beatmap-editor-button-press
+  rotate: false
+  xy: 0, 0
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 4
+ui-beatmap-editor-button-press
+  rotate: false
+  xy: 1202, 1202
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 5
+ui-beatmap-editor-button-press
+  rotate: false
+  xy: 283, 0
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 9
+ui-settings-button-press
+  rotate: false
+  xy: 1698, 480
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 21
+ui-statistics-button-press
+  rotate: false
+  xy: 0, 722
+  size: 1200, 1200
+  orig: 1200, 1200
+  offset: 0, 0
+  index: 23
+ui-support-page-button-press
+  rotate: false
+  xy: 1485, 1202
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 5
+ui-support-page-button-press
+  rotate: false
+  xy: 566, 0
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 6
+ui-support-page-button-press
+  rotate: false
+  xy: 849, 0
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 7
+ui-support-page-button-press
+  rotate: false
+  xy: 1132, 0
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 8
+ui-support-page-button-press
+  rotate: false
+  xy: 1415, 480
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 9
+
+Sujak14.png
+size: 1483,1922
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ui-settings-button-press
+  rotate: false
+  xy: 0, 0
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 1
+ui-settings-button-press
+  rotate: false
+  xy: 1202, 1202
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 12
+ui-statistics-button-press
+  rotate: false
+  xy: 0, 722
+  size: 1200, 1200
+  orig: 1200, 1200
+  offset: 0, 0
+  index: 24
+ui-support-page-button-press
+  rotate: false
+  xy: 283, 0
+  size: 281, 720
+  orig: 281, 720
+  offset: 0, 0
+  index: 0
+
+Sujak15.png
+size: 1200,1200
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ui-statistics-button-press
+  rotate: false
+  xy: 0, 0
+  size: 1200, 1200
+  orig: 1200, 1200
+  offset: 0, 0
+  index: 4
+
+Sujak16.png
+size: 1200,1200
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ui-statistics-button-press
+  rotate: false
+  xy: 0, 0
+  size: 1200, 1200
+  orig: 1200, 1200
+  offset: 0, 0
+  index: 25
+
+Sujak17.png
+size: 1200,1200
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ui-statistics-button-press
+  rotate: false
+  xy: 0, 0
+  size: 1200, 1200
+  orig: 1200, 1200
+  offset: 0, 0
+  index: 15
+
+Sujak18.png
+size: 1200,1200
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ui-statistics-button-press
+  rotate: false
+  xy: 0, 0
+  size: 1200, 1200
+  orig: 1200, 1200
+  offset: 0, 0
+  index: 6
+
+Sujak19.png
+size: 1200,1200
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ui-statistics-button-up
+  rotate: false
+  xy: 0, 0
+  size: 1200, 1200
+  orig: 1200, 1200
+  offset: 0, 0
+  index: -1
+
+Sujak20.png
+size: 1200,1200
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ui-statistics-button-press
+  rotate: false
+  xy: 0, 0
+  size: 1200, 1200
+  orig: 1200, 1200
+  offset: 0, 0
+  index: 0
+
+Sujak21.png
+size: 1200,1200
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ui-statistics-button-press
+  rotate: false
+  xy: 0, 0
+  size: 1200, 1200
+  orig: 1200, 1200
+  offset: 0, 0
+  index: 1
+
+Sujak22.png
+size: 1200,1200
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ui-statistics-button-press
+  rotate: false
+  xy: 0, 0
+  size: 1200, 1200
+  orig: 1200, 1200
+  offset: 0, 0
+  index: 3
+
+Sujak23.png
+size: 1200,1200
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ui-statistics-button-press
+  rotate: false
+  xy: 0, 0
+  size: 1200, 1200
+  orig: 1200, 1200
+  offset: 0, 0
+  index: 5
+
+Sujak24.png
+size: 1200,1200
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ui-statistics-button-press
+  rotate: false
+  xy: 0, 0
+  size: 1200, 1200
+  orig: 1200, 1200
+  offset: 0, 0
+  index: 10
+
+Sujak25.png
+size: 1200,1200
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ui-statistics-button-press
+  rotate: false
+  xy: 0, 0
+  size: 1200, 1200
+  orig: 1200, 1200
+  offset: 0, 0
+  index: 8
+
+Sujak26.png
+size: 1200,1200
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ui-statistics-button-press
+  rotate: false
+  xy: 0, 0
+  size: 1200, 1200
+  orig: 1200, 1200
+  offset: 0, 0
+  index: 7
+
+Sujak27.png
+size: 1200,1200
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ui-statistics-button-press
+  rotate: false
+  xy: 0, 0
+  size: 1200, 1200
+  orig: 1200, 1200
+  offset: 0, 0
+  index: 19
+
+Sujak28.png
+size: 1200,1200
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ui-statistics-button-press
+  rotate: false
+  xy: 0, 0
+  size: 1200, 1200
+  orig: 1200, 1200
+  offset: 0, 0
+  index: 12
+
+Sujak29.png
+size: 1200,1200
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ui-statistics-button-press
+  rotate: false
+  xy: 0, 0
+  size: 1200, 1200
+  orig: 1200, 1200
+  offset: 0, 0
+  index: 2
